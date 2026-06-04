@@ -34,18 +34,20 @@ Use `Phần` for course sections. Do not use em dash characters. Use commas, col
 
 ## 4. Pedagogical writing style
 
-Write like an excellent deep learning university professor and systems expert. The prose must be serious, precise, patient, and highly technical. It must not sound like a marketing article or literal translations.
+Future agents must write with the persona of an **AI Expert, Deep Learning & Model Serving Specialist**, and a dedicated professor. The goal is to help students grasp the absolute roots, mathematical foundations, and system mechanics of distributed reinforcement learning, rather than just high-level summaries, so they can confidently apply and implement them in real-world systems.
 
-Use Vietnamese as the main language. Use English technical terms when they are standard: *policy, value network, rollout, actor, critic, reference policy, reward model, resharding, sequence length balancing, sequence packing, expert parallelism, sequence parallelism, offloading, baseline*. Explain a term before relying on it heavily.
+The prose must be highly professional, precise, serious, patient, and technically deep. It must read like an original academic lecture series in Vietnamese, not a translated or marketing-oriented document.
 
-Avoid casual language, slang, and jokes. The tone should be authoritative yet accessible.
+Use Vietnamese as the main language. Use English technical terms when they are standard in the industry: *policy, value network, rollout, actor, critic, reference policy, reward model, resharding, sequence length balancing, sequence packing, expert parallelism, sequence parallelism, offloading, baseline*. Explain a term before relying on it heavily.
+
+Avoid casual language, slang, and jokes. The tone should be authoritative, academic, and accessible.
 
 For every important concept, follow this pedagogical flow:
-1. Start from a concrete hardware/system tension.
-2. Build math intuition and formulate equations.
-3. Show the corresponding pseudocode or algorithm.
-4. Reference the actual file in `verl` where this is implemented.
-5. Provide actionable performance tuning checklists or tips.
+1. Start from a concrete hardware/system tension (e.g., OOM, latency, GPU underutilization).
+2. Build mathematical intuition, formulate equations (using LaTeX), and prove key terms.
+3. Show the corresponding clean pseudocode or algorithms.
+4. Reference the actual file and function in `verl` where this is implemented.
+5. Provide actionable performance tuning checklists and practical implementation guides.
 
 ---
 
@@ -83,11 +85,14 @@ Safe read-only or verification commands:
 - `npm run typecheck`: run TypeScript verification.
 - `npm run build`: build the Docusaurus site.
 - `git status --short --branch`: inspect repository state.
+- `gh api repos/tuandung222/verl-architecture-lectures/pages`: verify GitHub Pages deployment status.
 
-Commands requiring explicit approval:
-- publishing or deploying manually.
-- pushing to GitHub if not already requested.
-- changing repository visibility.
+Commands requiring explicit approval/actions:
+- Configuring or enabling GitHub Pages for the first time:
+  `echo '{"source": {"branch": "gh-pages", "path": "/"}}' | gh api --method POST /repos/tuandung222/verl-architecture-lectures/pages --input -`
+- Manual publishing or deploying.
+- Pushing to GitHub if not already requested.
+- Changing repository visibility.
 
 ---
 
@@ -99,6 +104,8 @@ Before reporting completion, verify the relevant items:
 - No em dash characters appear in public or source text.
 - Public docs read like original Vietnamese teaching material.
 - If pushed, the commit author and committer are the intended identity (`tuandung222`).
+- The deployed website returns `HTTP 200` on the live URL.
+- Search engine exclusions are active on the live site (verified through `robots.txt` disallowing `/` and `<meta name="robots" content="noindex..."/>` in page source).
 
 ---
 
