@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkverl_architecture_lectures=self.webpackChunkverl_architecture_lectures||[]).push([["1668"],{6735(e,r,c){c.d(r,{createEventModelingServices:()=>t.g});var t=c(2968);c(9302)}}]);

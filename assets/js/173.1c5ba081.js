@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkverl_architecture_lectures=self.webpackChunkverl_architecture_lectures||[]).push([["173"],{7180(e,c,r){r.d(c,{createPacketServices:()=>t.$});var t=r(4824);r(9302)}}]);
