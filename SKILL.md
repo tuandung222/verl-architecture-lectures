@@ -1,7 +1,7 @@
 ---
 name: docusaurus-curriculum-deployment
-description: Quy trình đặc tả kỹ thuật nâng cao dành cho Agent để biên soạn giáo trình AI/Systems chuyên sâu bằng Docusaurus và quản lý vòng đời triển khai GitHub Pages khép kín.
-version: 1.0.0
+description: Quy trình đặc tả kỹ thuật dành cho Agent để biên soạn giáo trình chuyên sâu bằng Docusaurus và quản lý vòng đời triển khai GitHub Pages khép kín dưới danh tính chỉ định.
+version: 1.1.0
 author: Antigravity AI Systems Expert
 tools_required:
   - git (version >= 2.30)
@@ -11,7 +11,7 @@ tools_required:
   - curl
 ---
 
-# ĐẶC TẢ KỸ THUẬT: BIÊN SOẠN GIÁO TRÌNH VÀ TỰ ĐỘNG HÓA DEPLOYMENT GITHUB PAGES
+# ĐẶC TẢ KỸ THUẬT: BIÊN SOẠN GIÁO TRÌNH VÀ TỰ ĐỘNG HÓA DEPLOYMENT GITHUB PAGES (TỔNG QUÁT)
 
 Tài liệu này đóng vai trò là sách hướng dẫn vận hành (Operating Manual) cho các đại lý AI để thu thập tri thức hệ thống từ một codebase mục tiêu, cấu trúc nó thành giáo án sư phạm phân nhánh, thiết lập kiểm soát bảo mật tìm kiếm và triển khai tự động lên hạ tầng tĩnh.
 
@@ -19,33 +19,33 @@ Tài liệu này đóng vai trò là sách hướng dẫn vận hành (Operating
 
 ## 1. ĐỊNH HƯỚNG TƯ DUY SƯ PHẠM VÀ PHONG CÁCH HỘI THOẠI (PEDAGOGICAL PERSONA)
 
-Đại lý phải đóng vai trò là một **Chuyên gia Hệ thống AI (AI Systems/Model Serving Specialist)**. Toàn bộ tài liệu được biên soạn phải đáp ứng các tiêu chuẩn xuất bản học thuật cấp cao.
+Đại lý phải đóng vai trò là một **Chuyên gia chuyên ngành (Domain Expert / Systems Specialist)**. Toàn bộ tài liệu được biên soạn phải đáp ứng các tiêu chuẩn xuất bản học thuật cấp cao.
 
 ### 1.1. Vòng lặp Học tập Dựa trên Xung đột Hệ thống (Conflict-driven Learning)
 Không trình bày lý thuyết một cách thụ động. Mỗi bài viết bắt buộc phải được triển khai theo cấu trúc logic:
 
-1. **Hardware/Software Mismatch (Xung đột Phần cứng/Phần mềm)**: 
-   * Trình bày vấn đề hệ thống thực tế (ví dụ: mất cân bằng độ dài chuỗi tạo ra hiện tượng GPU Straggler trong pha Rollout, hoặc xung đột vùng nhớ VRAM khi colocate Actor và Critic trên GPU hạn chế).
+1. **System tension / Mismatch (Xung đột Hệ thống / Phần cứng)**: 
+   * Trình bày vấn đề hệ thống thực tế (ví dụ: các thắt nút cổ chai hiệu năng, OOM hoặc tranh chấp tài nguyên).
 2. **Mathematical Formulation (Mô hình hóa Toán học)**:
    * Chuyển đổi xung đột hệ thống thành các công thức toán học sử dụng định dạng $LaTeX$ chuẩn. 
-   * *Yêu cầu*: Phải giải thích chi tiết ý nghĩa vật lý và toán học của từng biến số (ví dụ: các biến $G$ trong ước lượng nhóm GRPO, $\gamma$ và $\lambda$ trong toán tử TD-error của GAE).
+   * *Yêu cầu*: Phải giải thích chi tiết ý nghĩa vật lý và toán học của từng biến số.
 3. **Clean Pseudocode (Mã giả chuẩn hóa)**:
-   * Trình bày thuật toán xử lý dưới dạng mã giả Python hoặc ngôn ngữ thuật toán sạch để học viên nắm vững luồng xử lý dữ liệu trước khi đi vào mã nguồn thực tế.
+   * Trình bày thuật toán xử lý dưới dạng mã giả sạch để học viên nắm vững luồng xử lý dữ liệu trước khi đi vào mã nguồn thực tế.
 4. **Source Code Mapping (Định vị Mã nguồn Thư viện)**:
-   * Chỉ định chính xác file (`.py`), lớp (`class`), và hàm (`def`) chịu trách nhiệm thực thi thuật toán này trong codebase đích để học viên có thể đối chiếu trực tiếp.
+   * Chỉ định chính xác file (`.py`, `.ts`, v.v.), lớp (`class`), và hàm (`def`) chịu trách nhiệm thực thi thuật toán này trong codebase đích để đối chiếu.
 5. **Production Tuning Guide (Cẩm nang Tối ưu hóa Thực tế)**:
-   * Đưa ra danh sách các tham số cấu hình hệ thống thực tế cùng giá trị khuyến nghị để học viên có thể áp dụng ngay vào cụm máy chủ sản xuất.
+   * Đưa ra danh sách các tham số cấu hình hệ thống thực tế cùng giá trị khuyến nghị để áp dụng ngay vào cụm sản xuất.
 
 ### 1.2. Ràng buộc Ngôn ngữ
 * **Ngôn ngữ chính**: Tiếng Việt học thuật, trang trọng, gãy gọn.
-* **Thuật ngữ chuyên ngành**: Giữ nguyên tiếng Anh cho các khái niệm tiêu chuẩn công nghiệp (ví dụ: *rollout, policy, critic, resharding, expert parallelism, sequence packing, baseline*).
+* **Thuật ngữ chuyên ngành**: Giữ nguyên tiếng Anh cho các khái niệm tiêu chuẩn công nghiệp.
 * **Tuyệt đối cấm**: Không sử dụng ký tự gạch ngang dài (`—`). Thay thế bằng dấu phẩy, dấu hai chấm, dấu chấm phẩy hoặc dấu ngoặc đơn.
 
 ---
 
 ## 2. RÀNG BUỘC BẢO MẬT & KIỂM SOÁT RIÊNG TƯ (SECURITY & PRIVACY CONTROLS)
 
-Vì giáo trình có thể chứa các thông tin độc quyền hoặc thiết kế hệ thống chưa công bố rộng rãi, đại lý phải thực thi cơ chế **Cách ly thu thập dữ liệu (Search Engine Exclusions)** theo đúng các tiêu chí sau:
+Vì giáo trình có thể chứa các thông tin nội bộ, đại lý phải thực thi cơ chế **Cách ly thu thập dữ liệu (Search Engine Exclusions)** theo đúng các tiêu chí sau:
 
 ### 2.1. Cấu hình Docusaurus Metadata
 Trong file `docusaurus.config.ts`, ở phần định nghĩa cấu hình chung của website, bắt buộc chèn metadata ngăn chặn index:
@@ -90,11 +90,17 @@ Tệp tin `README.md` tại thư mục gốc của repository phải có kích t
 
 ## 3. QUY TRÌNH TRIỂN KHAI VÀ TỰ ĐỘNG HÓA (DEPLOYMENT & GIT WORKFLOW)
 
+Để thực thi kỹ năng này, trước tiên cần xác định các biến môi trường mục tiêu:
+* `{TARGET_GIT_USERNAME}`: Username của tài khoản Git tác giả (ví dụ: `tuandung222`).
+* `{TARGET_GIT_EMAIL}`: Email tương ứng dùng cho commit (ví dụ: `75377334+tuandung222@users.noreply.github.com`).
+* `{GITHUB_OWNER}`: Owner của repo trên GitHub.
+* `{REPOSITORY_NAME}`: Tên thư mục repository (ví dụ: `verl-architecture-lectures`).
+
 ### Bước 3.1: Đồng bộ hóa thông tin Git cục bộ
 Để đảm bảo toàn bộ lịch sử commit được hiển thị dưới đúng profile tài khoản khách hàng chỉ định (tránh lộ danh tính của đại lý), chạy các lệnh sau tại thư mục gốc của repo:
 ```bash
-git config --local user.name "tuandung222"
-git config --local user.email "75377334+tuandung222@users.noreply.github.com"
+git config --local user.name "{TARGET_GIT_USERNAME}"
+git config --local user.email "{TARGET_GIT_EMAIL}"
 ```
 
 ### Bước 3.2: Quy trình Kiểm thử và Biên dịch Tĩnh
@@ -132,15 +138,15 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
-          user_name: tuandung222
-          user_email: 75377334+tuandung222@users.noreply.github.com
+          user_name: {TARGET_GIT_USERNAME}
+          user_email: {TARGET_GIT_EMAIL}
 ```
 
 ### Bước 3.4: Triển khai Kích hoạt Pages thông qua API GitHub CLI
 Nếu repository mới được khởi tạo và chưa được cấu hình Pages trong Settings, đại lý phải thực thi lệnh gọi API để kích hoạt:
 ```bash
 echo '{"source": {"branch": "gh-pages", "path": "/"}}' | \
-gh api --method POST /repos/tuandung222/verl-architecture-lectures/pages --input -
+gh api --method POST /repos/{GITHUB_OWNER}/{REPOSITORY_NAME}/pages --input -
 ```
 
 ---
@@ -148,8 +154,8 @@ gh api --method POST /repos/tuandung222/verl-architecture-lectures/pages --input
 ## 4. XỬ LÝ LỖI THƯỜNG GẶP (TROUBLESHOOTING & FAILURE MODES)
 
 * **Lỗi 404 sau khi deploy**:
-  * *Nguyên nhân*: Cấu hình `baseUrl` trong `docusaurus.config.ts` không khớp với tên repo GitHub Pages (ví dụ: repo tên là `verl-architecture-lectures` nhưng `baseUrl` để mặc định là `/`).
-  * *Giải pháp*: Sửa `baseUrl` thành `/verl-architecture-lectures/` và sửa `url` thành `https://tuandung222.github.io`.
+  * *Nguyên nhân*: Cấu hình `baseUrl` trong `docusaurus.config.ts` không khớp với tên repo GitHub Pages (ví dụ: repo tên là `{REPOSITORY_NAME}` nhưng `baseUrl` để mặc định là `/`).
+  * *Giải pháp*: Sửa `baseUrl` thành `/{REPOSITORY_NAME}/` và sửa `url` thành `https://{GITHUB_OWNER}.github.io`.
 * **Lỗi biên dịch LaTeX/Math**:
   * *Nguyên nhân*: Thiếu plugin `remark-math` hoặc `rehype-katex` trong cấu hình Docusaurus, hoặc chưa import file CSS của KaTeX.
   * *Giải pháp*: Cài đặt đúng các package và import `@import "https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css";` vào tệp CSS tùy chỉnh.
@@ -163,7 +169,7 @@ gh api --method POST /repos/tuandung222/verl-architecture-lectures/pages --input
 | Hạng mục kiểm tra | Lệnh xác minh | Kết quả mong đợi |
 | :--- | :--- | :--- |
 | **README Size** | `stat -c %s README.md` hoặc `wc -c < README.md` | Trả về `0` (0 bytes). |
-| **Git Config Author** | `git config user.name && git config user.email` | `tuandung222` và email tương ứng. |
-| **Web Service HTTP** | `curl -s -o /dev/null -w "%{http_code}" https://tuandung222.github.io/verl-architecture-lectures/` | Trả về `200` (hoặc `301` chuyển hướng). |
-| **Meta Robots Check** | `curl -s https://tuandung222.github.io/verl-architecture-lectures/ \| grep -o 'name="robots" content="noindex[^"]*"'` | Trả về `name="robots" content="noindex, nofollow, noarchive, nosnippet"`. |
-| **Robots.txt Check** | `curl -s https://tuandung222.github.io/verl-architecture-lectures/robots.txt` | Trả về chính xác `User-agent: *` và `Disallow: /`. |
+| **Git Config Author** | `git config user.name && git config user.email` | Khớp với `{TARGET_GIT_USERNAME}` và `{TARGET_GIT_EMAIL}`. |
+| **Web Service HTTP** | `curl -s -o /dev/null -w "%{http_code}" https://{GITHUB_OWNER}.github.io/{REPOSITORY_NAME}/` | Trả về `200` (hoặc `301` chuyển hướng). |
+| **Meta Robots Check** | `curl -s https://{GITHUB_OWNER}.github.io/{REPOSITORY_NAME}/ \| grep -o 'name="robots" content="noindex[^"]*"'` | Trả về `name="robots" content="noindex, nofollow, noarchive, nosnippet"`. |
+| **Robots.txt Check** | `curl -s https://{GITHUB_OWNER}.github.io/{REPOSITORY_NAME}/robots.txt` | Trả về chính xác `User-agent: *` và `Disallow: /`. |
